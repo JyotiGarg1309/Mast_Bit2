@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <test thread-count="5" name="FF_Browser(failed)">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="scripts_mastbit.TC1_Registration">
+        <methods>
+          <include name="setup"/>
+          <include name="test1"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- scripts_mastbit.TC1_Registration -->
+      <class name="scripts_mastbit.TC2_Login">
+        <methods>
+          <include name="test2"/>
+          <include name="setup"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- scripts_mastbit.TC2_Login -->
+    </classes>
+  </test> <!-- FF_Browser(failed) -->
+  <test thread-count="5" name="Chrome_Browser(failed)">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="scripts_mastbit.TC1_Registration">
+        <methods>
+          <include name="setup"/>
+          <include name="test1" invocation-numbers="0"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- scripts_mastbit.TC1_Registration -->
+      <class name="scripts_mastbit.TC2_Login">
+        <methods>
+          <include name="test2"/>
+          <include name="setup"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- scripts_mastbit.TC2_Login -->
+    </classes>
+  </test> <!-- Chrome_Browser(failed) -->
+  <test thread-count="5" name="IE_Browser(failed)">
+    <parameter name="browser" value="ie"/>
+    <classes>
+      <class name="scripts_mastbit.TC1_Registration">
+        <methods>
+          <include name="setup"/>
+          <include name="test1"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- scripts_mastbit.TC1_Registration -->
+      <class name="scripts_mastbit.TC2_Login">
+        <methods>
+          <include name="test2"/>
+          <include name="setup"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- scripts_mastbit.TC2_Login -->
+    </classes>
+  </test> <!-- IE_Browser(failed) -->
+</suite> <!-- Failed suite [Suite] -->

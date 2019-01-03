@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  
+      <test  name="FF_Browser">
+       <parameter name="browser" value="firefox"></parameter>
+       <classes>
+      <class name="scripts_mastbit.TC1_Registration"/>
+      <class name="scripts_mastbit.TC2_Login"/>
+    </classes>
+  </test> 
+   <test  name="Chrome_Browser">
+       <parameter name="browser" value="chrome"></parameter>
+    <classes>
+      <class name="scripts_mastbit.TC1_Registration"/>
+      <class name="scripts_mastbit.TC2_Login"/>
+    </classes>
+  </test>
+   <test  name="IE_Browser">
+        <parameter name="browser" value="ie"></parameter>
+    <classes>
+      <class name="scripts_mastbit.TC1_Registration"/>
+      <class name="scripts_mastbit.TC2_Login"/>
+    </classes>
+    
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
