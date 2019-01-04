@@ -6,21 +6,21 @@
        <parameter name="browser" value="firefox"></parameter>
        <classes>
       <class name="scripts_mastbit.TC1_Registration"/>
-      <class name="scripts_mastbit.TC2_Login"/>
+      
     </classes>
   </test> 
    <test  name="Chrome_Browser">
        <parameter name="browser" value="chrome"></parameter>
     <classes>
       <class name="scripts_mastbit.TC1_Registration"/>
-      <class name="scripts_mastbit.TC2_Login"/>
+      
     </classes>
   </test>
    <test  name="IE_Browser">
         <parameter name="browser" value="ie"></parameter>
     <classes>
       <class name="scripts_mastbit.TC1_Registration"/>
-      <class name="scripts_mastbit.TC2_Login"/>
+      
     </classes>
     
   </test> <!-- Test -->

@@ -15,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -24,6 +25,7 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import utilities_mastbit.ScreenShot;
 
 public class Base_Mastbit {
 	
@@ -60,8 +62,8 @@ public class Base_Mastbit {
 	else
 		System.out.println("Browser is not correct");
 	
-	
-	File f =new File("C:\\Users\\Tamanna Sharma\\Desktop\\Jyoti QA\\mastbit.testing.com\\OR.properties");
+	File f =new File("C:\\Users\\Tamanna Sharma\\git\\MSTT\\mastbit.testing.com\\OR.properties");
+	//File f =new File("C:\\Users\\Tamanna Sharma\\Desktop\\Jyoti QA\\mastbit.testing.com\\OR.properties");
 	FileInputStream fis =new FileInputStream(f);
     pr =new Properties();
 	pr.load(fis);
@@ -80,7 +82,7 @@ public class Base_Mastbit {
 	{
 		
 	
-		File f =new File("C:\\Users\\Tamanna Sharma\\Desktop\\Jyoti QA\\mastbit.testing.com\\mastbit_data.xls");
+		File f =new File("C:\\Users\\Tamanna Sharma\\git\\MSTT\\mastbit.testing.com\\mastbit_data.xls");
 		Workbook wb = Workbook.getWorkbook(f);
 		Sheet sheet = wb.getSheet("Sheet1");
 		
@@ -98,10 +100,16 @@ public class Base_Mastbit {
 	 return obj;
 	}
 	
+		
 	
 @AfterMethod
-public void teardown()
+public void teardown(ITestResult res)
 {
+	if(ITestResult.FAILURE==res.getStatus())
+	{
+		ScreenShot.take_screenshot(driver, res.getName());
+	}
+	
 	driver.close();
 }
 

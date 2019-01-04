@@ -43,7 +43,8 @@ public class Registration {
 	     select.selectByVisibleText("India");
 	     Thread.sleep(2000);
 	     driver.findElement(By.xpath(pr.getProperty("check"))).click();
-	     Thread.sleep(180000);
+	     Thread.sleep(180000); //long wait set to handle captcha
+	     
 	     driver.findElement(By.xpath(pr.getProperty("bottomRes"))).click();
 	     
 	  }
