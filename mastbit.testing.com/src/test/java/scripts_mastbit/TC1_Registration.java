@@ -12,25 +12,22 @@ import pages_mastbit.Mail_Verify;
 import pages_mastbit.Registration;
 
 public class TC1_Registration extends Base_Mastbit {
-	
-	@Test(dataProvider="data")
-	public void registrationTest(String name,String user,String password) throws InterruptedException, IOException, BiffException
-	{
-		 Thread.sleep(3000);
-		 Registration reg =new Registration(driver ,pr);
-		
-	     reg.register(name,user,password);
-	     
-	     //Assert.assertEquals(driver.getTitle(),"MastBit-Exchange | About");
-	     Thread.sleep(3000);
-	     
-	     Mail_Verify mailvfy =new Mail_Verify(driver,pr);
-	     mailvfy.mail_verify(name,user,password);
-	     Thread.sleep(5000);
-	     
-	    
-	   
+
+	@Test(dataProvider = "data")
+	public void registrationTest(String name, String user, String password)
+			throws InterruptedException, IOException, BiffException {
+		Thread.sleep(3000);
+		Registration reg = new Registration(driver, pr);
+
+		reg.register(name, user, password);
+
+		// Assert.assertEquals(driver.getTitle(),"MastBit-Exchange | About");
+		Thread.sleep(3000);
+
+		Mail_Verify mailvfy = new Mail_Verify(driver, pr);
+		mailvfy.mail_verify(name, user, password);
+		Thread.sleep(5000);
+
 	}
-	
 
 }

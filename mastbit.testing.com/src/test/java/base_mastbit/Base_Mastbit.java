@@ -57,8 +57,7 @@ public class Base_Mastbit {
 			System.out.println("Browser is not correct");
 
 		File f = new File("./mastbit.testing.com/OR.properties");
-		// File f =new File("C:\\Users\\Tamanna Sharma\\Desktop\\Jyoti
-		// QA\\mastbit.testing.com\\OR.properties");
+
 		FileInputStream fis = new FileInputStream(f);
 		pr = new Properties();
 		pr.load(fis);
