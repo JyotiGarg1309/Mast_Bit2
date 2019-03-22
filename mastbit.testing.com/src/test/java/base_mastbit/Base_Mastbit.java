@@ -28,93 +28,75 @@ import jxl.read.biff.BiffException;
 import utilities_mastbit.ScreenShot;
 
 public class Base_Mastbit {
-	
+
 	public WebDriver driver;
 	public Properties pr;
-	
+
 	@BeforeMethod
-	@Parameters({"browser"})
-   public void setup(String browser) throws IOException 
-	{
-		
-	if(browser.equalsIgnoreCase("firefox"))
-	{
-		driver =new FirefoxDriver();
-	}
-		
-	else if(browser.equalsIgnoreCase("chrome"))
-		
-		{
-	System.setProperty("webdriver.chrome.driver", "C:\\Users\\Tamanna Sharma\\Desktop\\chromedriver.exe");
-			
-	driver =new ChromeDriver();
+	@Parameters({ "browser" })
+	public void setup(String browser) throws IOException {
+		if (browser.equals("chrome")) {
+			System.setProperty("webdriver.chrome.driver",
+					System.getProperty("user.dir") + "/ExeDrivers/chromedriver.exe");
+			driver = new ChromeDriver();
+
+		} else if (browser.equals("firefox")) {
+			System.setProperty("webdriver.gecko.driver",
+					System.getProperty("user.dir") + "/ExeDrivers/geckodriver.exe");
+
+			driver = new FirefoxDriver();
+
+		} else if (browser.equals("IE")) {
+			System.setProperty("webdriver.ie.driver",
+					System.getProperty("user.dir") + "/ExeDrivers/IEDriverServer.exe");
+			driver = new InternetExplorerDriver();
+
 		}
-	
-	else if(browser.equalsIgnoreCase("ie"))
-	
-	{
-    System.setProperty("webdriver.ie.driver", "C:\\Users\\Tamanna Sharma\\Desktop\\IEDriverServer.exe");
-		
-    driver =new InternetExplorerDriver();
+
+		else
+			System.out.println("Browser is not correct");
+
+		File f = new File("./mastbit.testing.com/OR.properties");
+		// File f =new File("C:\\Users\\Tamanna Sharma\\Desktop\\Jyoti
+		// QA\\mastbit.testing.com\\OR.properties");
+		FileInputStream fis = new FileInputStream(f);
+		pr = new Properties();
+		pr.load(fis);
+		driver.get(pr.getProperty("url3"));
+		driver.get(pr.getProperty("url"));
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 	}
 
-	
-	else
-		System.out.println("Browser is not correct");
-	
-	File f =new File("C:\\Users\\Tamanna Sharma\\git\\MSTT\\mastbit.testing.com\\OR.properties");
-	//File f =new File("C:\\Users\\Tamanna Sharma\\Desktop\\Jyoti QA\\mastbit.testing.com\\OR.properties");
-	FileInputStream fis =new FileInputStream(f);
-    pr =new Properties();
-	pr.load(fis);
-	driver.get(pr.getProperty("url3"));
-	driver.get(pr.getProperty("url"));
-	driver.manage().window().maximize();
-	driver.manage().deleteAllCookies();
-	driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	
-	
-     }
-	
-	@DataProvider(name="data")
-	public Object[][] data() throws BiffException, IOException
-	{
-		
-	
-		File f =new File("C:\\Users\\Tamanna Sharma\\git\\MSTT\\mastbit.testing.com\\mastbit_data.xls");
+	@DataProvider(name = "data")
+	public Object[][] data() throws BiffException, IOException {
+
+		File f = new File("./mastbit.testing.com/mastbit_data.xls");
 		Workbook wb = Workbook.getWorkbook(f);
 		Sheet sheet = wb.getSheet("Sheet1");
-		
-	int row = sheet.getRows();
-	int col =sheet.getColumns();
-	 Object[][] obj =new Object[row][col];
-	 for(int i=0;i<row;i++)
-	 {
-		 for(int j=0;j<col;j++)
-		 {
-			 Cell c1 = sheet.getCell(j, i);
-			 obj[i][j] =c1.getContents();
-		 }
-	 }
-	 return obj;
-	}
-	
-		
-	
-@AfterMethod
-public void teardown(ITestResult res)
-{
-	if(ITestResult.FAILURE==res.getStatus())
-	{
-		ScreenShot.take_screenshot(driver, res.getName());
-	}
-	
-	driver.close();
-}
 
+		int row = sheet.getRows();
+		int col = sheet.getColumns();
+		Object[][] obj = new Object[row][col];
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				Cell c1 = sheet.getCell(j, i);
+				obj[i][j] = c1.getContents();
+			}
+		}
+		return obj;
+	}
+
+	@AfterMethod
+	public void teardown(ITestResult res) {
+		if (ITestResult.FAILURE == res.getStatus()) {
+			ScreenShot.take_screenshot(driver, res.getName());
+		}
+
+		driver.close();
+	}
 
 }
-
-
-
